@@ -1,44 +1,44 @@
-import axios from 'axios'
+import axios from "axios";
 import {
   FETCH_FLIGHT_REQUEST,
   FETCH_FLIGHT_SUCCESS,
-  FETCH_FLIGHT_FAILURE
-} from './userTypes'
+  FETCH_FLIGHT_FAILURE,
+} from "./userTypes";
 
-export const fetchUsers = () => {
+export const fetchitems = () => {
   return (dispatch) => {
-    dispatch(fetchFlightRequest())
+    dispatch(fetchFlightRequest());
     axios
-    
-      .get('https://api.spacexdata.com/v3/launches')
-      .then(response => {
+
+      .get("https://api.spacexdata.com/v3/launches")
+      .then((response) => {
         // response.data is the users
-        const users = response.data
-        dispatch(fetchFlightSuccess(users))
+        const users = response.data;
+        dispatch(fetchFlightSuccess(users));
       })
-      .catch(error => {
+      .catch((error) => {
         // error.message is the error message
-        dispatch(fetchFlightFailure(error.message))
-      })
-  }
-}
+        dispatch(fetchFlightFailure(error.message));
+      });
+  };
+};
 
 export const fetchFlightRequest = () => {
   return {
-    type: FETCH_FLIGHT_REQUEST
-  }
-}
+    type: FETCH_FLIGHT_REQUEST,
+  };
+};
 
-export const fetchFlightSuccess = users => {
+export const fetchFlightSuccess = (users) => {
   return {
     type: FETCH_FLIGHT_SUCCESS,
-    payload: users
-  }
-}
+    payload: users,
+  };
+};
 
-export const fetchFlightFailure = error => {
+export const fetchFlightFailure = (error) => {
   return {
     type: FETCH_FLIGHT_FAILURE,
-    payload: error
-  }
-}
+    payload: error,
+  };
+};
